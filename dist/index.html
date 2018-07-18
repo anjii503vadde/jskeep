@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JS Keep</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+</head>
+
+<body>
+    <header id="header" class="text-center sticky-top bg-secondary">
+        <h3>KEEP</h3>
+    </header>
+    <section id="buttonection" class="text-center">
+        <button id="create-List" class="bg-primary text-white">Create List</button>
+    </section>
+    <hr>
+    <div id="dialog-form" title="Make List">
+        <form>
+            <div>
+                <label for="cardtitle">Enter Title</label>
+                <input type="text" name="cardtitle" id="cardtitle" class="text ui-widget-content ui-corner-all">
+            </div>
+            <div>
+                <input type="text" name="itemName" id="itemName" class="text ui-widget-content ui-corner-all">
+                <input type="button" name="add-item" id="add-item" value="Add Item">
+            </div>
+            <div id="itemsDilog"></div>
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+
+        </form>
+    </div>
+    <section id="cardsection">
+        <div id="primary" class="row d-flex">
+
+        </div>
+    </section>
+
+    </div>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js//jquery-ui.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="bundle.js"></script></body>
+
+</html>
