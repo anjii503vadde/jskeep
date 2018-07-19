@@ -29,6 +29,7 @@ var onload = $(document).ready(function () {
                 var checkbox = document.createElement("input");
                 checkbox.type = "checkbox";
                 checkbox.name = "slct[]";
+                checkbox.className += "completedyn"
                 checkbox.checked = allCardsData[i].data[j].itemStatus;
                 checkbox.style.width = "10%";
                 liItem1.appendChild(outputElement);
@@ -105,7 +106,7 @@ var readCardData = function readCardElementsData(current) {
                     jsonDatalocal["itemName"] = dataItems[0].innerHTML;
                     jsonDatalocal["itemStatus"] = dataItems[1].checked;
                     if (dataItems[1].checked && $.isEmptyObject(dataItems[2].innerHTML)) {
-                        jsonDatalocal["itemCompletedDt"] = new Date().toLocaleDateString();;
+                        jsonDatalocal["itemCompletedDt"] = new Date().toLocaleDateString();
                     } else {
                         jsonDatalocal["itemCompletedDt"] = dataItems[2].innerHTML;
                     }
@@ -146,7 +147,7 @@ var readMainElements = function readMainElementsData() {
                                 jsonData["itemName"] = dataItems[0].innerHTML;
                                 jsonData["itemStatus"] = dataItems[1].checked;
                                 if (dataItems[1].checked && $.isEmptyObject(dataItems[2].innerHTML)) {
-                                    jsonData["itemCompletedDt"] = new Date().toLocaleDateString();;
+                                    jsonData["itemCompletedDt"] = new Date().toLocaleDateString();
                                 } else {
                                     jsonData["itemCompletedDt"] = dataItems[2].innerHTML;
                                 }
@@ -217,7 +218,7 @@ var dialogImpl = $(function () {
             outputElement.innerHTML = myjson[i]["itemName"];
             outputElement.style.width = "65%";
             var checkbox = document.createElement("input");
-
+            checkbox.className += "completedyn"
             checkbox.type = "checkbox";
             checkbox.name = "slct[]";
             checkbox.checked = myjson[i]["itemStatus"];
@@ -300,18 +301,19 @@ var dialogImpl = $(function () {
         outputElement.innerHTML = itemName.val();
         outputElement.style.width = "65%";
         var checkbox = document.createElement("input");
-
+        checkbox.className += "completedyn"
         checkbox.type = "checkbox";
         checkbox.name = "slct[]";
         checkbox.style.width = "10%";
         liItem1.appendChild(outputElement);
         liItem1.appendChild(checkbox);
-        var label = document.createElement("label");
-        label.className = "delete";
-        label.style.backgroundColor = "red";
+        var buttonDelete = document.createElement("button");
+        buttonDelete.className = "delete";
+        buttonDelete.style.backgroundColor = "red";
         var t = document.createTextNode("x");
-        label.appendChild(t);
-        liItem1.appendChild(label);
+        buttonDelete.appendChild(t);
+        buttonDelete.type = "button"
+        liItem1.appendChild(buttonDelete);
         ulItems.appendChild(liItem1);
         parentDiv.appendChild(ulItems);
         $(".selector").sortable({
@@ -322,8 +324,18 @@ var dialogImpl = $(function () {
 
     });
 
-    $(document).on("click", "label.delete", function () {
+    $(document).on("click", "button.delete", function () {
         $(this).parent().remove();
+    });
+
+    $(document).on("click", "input.completedyn", function () {
+        var liNode = $(this).get(0).parentNode;
+        var dataItems = liNode.childNodes;
+        if (dataItems[1].checked && $.isEmptyObject(dataItems[2].innerHTML)) {
+            //dataItems[1].disabled = true;
+            dataItems[2].innerHTML = new Date().toLocaleDateString();
+            readCardData($(this).parent().parent());
+        }
     });
 
     $(document).on("click", "button.remove", function () {

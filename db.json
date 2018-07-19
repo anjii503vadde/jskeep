@@ -10,8 +10,8 @@
         },
         {
           "itemName": "3333333333333333",
-          "itemStatus": false,
-          "itemCompletedDt": ""
+          "itemStatus": true,
+          "itemCompletedDt": "7/19/2018"
         },
         {
           "itemName": "4444444444444444",
